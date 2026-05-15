@@ -1,0 +1,33 @@
+venv/
+env/
+wcpredictor/
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data (comment out if you want to track raw data)
+# data/raw/
+
+# Outputs (uncomment if you don't want to track results)
+# outputs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# API keys / secrets
+.env
+*.env
+secrets.py
+config.py
