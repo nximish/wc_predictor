@@ -64,8 +64,8 @@ def predict_outcome(home_team: str, away_team: str):
     # The upper triangle (excluding diagonal) represents Home wins (home goals > away goals)
     # The Lower triangle (excluding diagonal) represents Away wins (home goals < away goals)
     # The Diagonal represents Draws (home goals = away goals)
-    prob_home = np.triu(matrix, k=1).sum() # (k=1 means start one above diagonal)
-    prob_away = np.tril(matrix, k=-1).sum() # (k=-1 means start one below diagonal)
+    prob_home = np.tril(matrix, k=-1).sum() # lower triangle: home goals > away goals
+    prob_away = np.triu(matrix, k=1).sum() # upper triangle: away goals > home goals
     prob_draw = np.diag(matrix).sum()
     
     return (prob_home, prob_away, prob_draw)

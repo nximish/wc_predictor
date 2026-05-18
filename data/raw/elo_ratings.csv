@@ -1,0 +1,209 @@
+,country_code,elo_rating,name
+0,ES,2165,Spain
+1,AR,2113,Argentina
+2,FR,2081,France
+3,EN,2020,England
+4,BR,1984,Brazil
+5,PT,1984,Portugal
+6,CO,1975,Colombia
+7,NL,1961,Netherlands
+8,EC,1933,Ecuador
+9,HR,1930,Croatia
+10,DE,1923,Germany
+11,NO,1912,Norway
+12,JP,1904,Japan
+13,TR,1902,Turkey
+14,UY,1892,Uruguay
+15,CH,1889,Switzerland
+16,SN,1878,Senegal
+17,DK,1869,Denmark
+18,BE,1866,Belgium
+19,MX,1858,Mexico
+20,IT,1856,Italy
+21,PY,1833,Paraguay
+22,AT,1827,Austria
+23,MA,1821,Morocco
+24,CA,1784,Canada
+25,AU,1783,Australia
+26,RU,1776,Russia
+27,RS,1769,Serbia
+28,SQ,1767,Scotland
+29,UA,1767,Ukraine
+30,IR,1760,Iran
+31,KR,1752,South Korea
+32,NG,1752,Nigeria
+33,GR,1752,Greece
+34,DZ,1743,Algeria
+35,PA,1737,Panama
+36,PL,1729,Poland
+37,UZ,1727,Uzbekistan
+38,VE,1727,Venezuela
+39,CZ,1726,Czechia
+40,KO,1721,Kosovo
+41,SE,1719,Sweden
+42,CL,1710,Chile
+43,HU,1703,Hungary
+44,WA,1698,Wales
+45,PE,1695,Peru
+46,SI,1694,Slovenia
+47,IE,1692,Ireland
+48,JO,1690,Jordan
+49,EG,1689,Egypt
+50,CI,1676,Ivory Coast
+51,SK,1673,Slovakia
+52,CD,1655,DR Congo
+53,GE,1653,Georgia
+54,AL,1646,Albania
+55,BO,1645,Bolivia
+56,TN,1636,Tunisia
+57,IL,1634,Israel
+58,RO,1627,Romania
+59,CR,1614,Costa Rica
+60,CM,1614,Cameroon
+61,IQ,1607,Iraq
+62,ML,1596,Mali
+63,NZ,1585,New Zealand
+64,HN,1571,Honduras
+65,IS,1571,Iceland
+66,SA,1568,Saudi Arabia
+67,CV,1549,Cape Verde
+68,AO,1543,Angola
+69,FI,1542,Finland
+70,JM,1535,Jamaica
+71,HT,1532,Haiti
+72,BF,1530,Burkina Faso
+73,ZA,1524,South Africa
+74,GT,1515,Guatemala
+75,BY,1513,Belarus
+76,GH,1505,Ghana
+77,SY,1491,Syria
+78,OM,1490,Oman
+79,BG,1475,Bulgaria
+80,GN,1469,Guinea
+81,PS,1469,Palestine
+82,ME,1439,Montenegro
+83,CW,1436,Curaçao
+84,LU,1436,Luxembourg
+85,SR,1431,Suriname
+86,KZ,1430,Kazakhstan
+87,BJ,1429,Benin
+88,QA,1425,Qatar
+89,KD,1424,Kurdistan
+90,CN,1423,China
+91,GM,1423,Gambia
+92,LY,1420,Libya
+93,BH,1418,Bahrain
+94,GA,1401,Gabon
+95,UG,1394,Uganda
+96,NE,1393,Niger
+97,MG,1382,Madagascar
+98,FO,1382,Faroe Islands
+99,AM,1379,Armenia
+100,TH,1376,Thailand
+101,KP,1375,North Korea
+102,MZ,1372,Mozambique
+103,ZW,1371,Zimbabwe
+104,ZM,1370,Zambia
+105,KM,1362,Comoros
+106,TG,1358,Togo
+107,KE,1356,Kenya
+108,VN,1351,Vietnam
+109,SD,1349,Sudan
+110,SL,1348,Sierra Leone
+111,RE,1345,Reunion
+112,SV,1342,El Salvador
+113,AZ,1340,Azerbaijan
+114,EE,1339,Estonia
+115,GP,1338,Guadeloupe
+116,RW,1336,Rwanda
+117,LB,1332,Lebanon
+118,ID,1331,Indonesia
+119,KW,1328,Kuwait
+120,NI,1327,Nicaragua
+121,ZN,1321,Zanzibar
+122,TZ,1313,Tanzania
+123,MQ,1312,Martinique
+124,MR,1311,Mauritania
+125,,1303,Namibia
+126,LV,1301,Latvia
+127,CY,1301,Cyprus
+128,LR,1296,Liberia
+129,MY,1293,Malaysia
+130,GY,1292,Guyana
+131,KG,1291,Kyrgyzstan
+132,LT,1290,Lithuania
+133,BI,1286,Burundi
+134,TJ,1285,Tajikistan
+135,ET,1285,Ethiopia
+136,BW,1267,Botswana
+137,MD,1262,Moldova
+138,MW,1241,Malawi
+139,CU,1239,Cuba
+140,MT,1237,Malta
+141,YT,1216,Mayotte
+142,TM,1209,Turkmenistan
+143,CG,1207,Congo
+144,LS,1205,Lesotho
+145,ER,1201,Eritrea
+146,TI,1176,Tahiti
+147,PH,1167,Philippines
+148,YE,1151,Yemen
+149,SW,1149,Eswatini
+150,IN,1138,India
+151,PR,1138,Puerto Rico
+152,SG,1137,Singapore
+153,HK,1120,Hong Kong
+154,BM,1119,Bermuda
+155,VU,1114,Vanuatu
+156,SS,1108,South Sudan
+157,FJ,1108,Fiji
+158,GD,1098,Grenada
+159,AD,1077,Andorra
+160,MU,1073,Mauritius
+161,TD,1073,Chad
+162,BZ,1073,Belize
+163,MF,1042,Saint Martin
+164,AF,1011,Afghanistan
+165,JS,1005,Somaliland
+166,LC,1003,Saint Lucia
+167,GI,1002,Gibraltar
+168,MM,982,Myanmar
+169,AW,980,Aruba
+170,SO,979,Somalia
+171,SX,975,Sint Maarten
+172,MS,972,Montserrat
+173,GL,946,Greenland
+174,DJ,940,Djibouti
+175,DM,934,Dominica
+176,BD,932,Bangladesh
+177,LI,904,Liechtenstein
+178,MC,903,Monaco
+179,BB,898,Barbados
+180,NP,893,Nepal
+181,SC,853,Seychelles
+182,MV,848,Maldives
+183,KH,844,Cambodia
+184,SM,836,San Marino
+185,BQ,836,Bonaire
+186,LK,827,Sri Lanka
+187,TW,821,Taiwan
+188,PK,812,Pakistan
+189,TV,756,Tuvalu
+190,LA,734,Laos
+191,MN,730,Mongolia
+192,WS,728,Samoa
+193,GU,719,Guam
+194,VA,692,Vatican
+195,AB,691,Saba
+196,BS,685,Bahamas
+197,TL,673,East Timor
+198,AI,646,Anguilla
+199,BT,636,Bhutan
+200,BN,633,Brunei
+201,TE,629,Tibet
+202,CK,622,Cook Islands
+203,MO,588,Macao
+204,KI,544,Kiribati
+205,TO,520,Tonga
+206,NU,496,Niue
+207,PW,402,Palau
