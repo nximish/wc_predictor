@@ -1,96 +1,118 @@
 ````markdown
+<div align="center">
+
 # 🌍 FIFA World Cup 2026 Prediction System
 
-This project presents a complete end-to-end football analytics and tournament prediction pipeline using **historical international football data**, **Elo ratings**, **Poisson goal modeling**, **Dixon-Coles correction**, and **Monte Carlo simulation** to predict FIFA World Cup 2026 outcomes.
+### ⚽ Monte Carlo Tournament Simulation using Poisson Modeling & Dixon-Coles Correction
 
-The system combines statistical modeling and probabilistic simulation to realistically estimate football match results and tournament progression under uncertainty.
+<img src="https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python">
+<img src="https://img.shields.io/badge/NumPy-Scientific_Computing-orange?style=for-the-badge&logo=numpy">
+<img src="https://img.shields.io/badge/Pandas-Data_Analysis-purple?style=for-the-badge&logo=pandas">
+<img src="https://img.shields.io/badge/SciPy-Statistics-green?style=for-the-badge&logo=scipy">
+<img src="https://img.shields.io/badge/Football-Analytics-red?style=for-the-badge">
+
+<br>
+
+*A complete football analytics pipeline for predicting FIFA World Cup 2026 outcomes using statistical modeling, Elo ratings, and tournament simulation.*
+
+</div>
 
 ---
 
-## 🧠 Project Overview
+# 📖 Overview
 
-Football is inherently probabilistic and low-scoring, making deterministic prediction methods unreliable. This project models football outcomes using classical statistical techniques commonly used in sports analytics.
+Football is inherently unpredictable, low-scoring, and highly probabilistic. Traditional deterministic prediction systems often fail to capture the uncertainty associated with real-world football matches.
 
-The prediction framework combines:
+This project builds a realistic **World Cup prediction framework** using:
 
 - ⚽ Historical international football results
-- 📊 Team offensive and defensive strength estimation
+- 🧠 Team strength estimation
 - 🏆 Elo ratings
 - 🎯 Poisson goal distributions
 - 🔧 Dixon-Coles low-score correction
 - 🎲 Monte Carlo tournament simulation
 
-The core idea is to estimate expected goals for each team and simulate entire tournament structures thousands of times to generate realistic predictions.
+The system predicts match outcomes and simulates the entire FIFA World Cup 2026 tournament structure under uncertainty.
 
 ---
 
-## 💻 What's Implemented
+# ✨ Features
 
-The project is divided into multiple modular notebooks covering the full analytics pipeline.
-
-### ✅ Step-by-Step Workflow
-
-### 1. Historical Data Collection
-- Load international football match results
-- Extract FIFA World Cup matches
-- Filter competitive non-friendly fixtures
-- Export processed datasets
-
-### 2. Elo Rating Integration
-- Fetch Elo ratings
-- Clean and standardize team names
-- Merge rating information with team datasets
-
-### 3. National Team Data Collection
-- Scrape Transfermarkt national team information
-- Extract squad market values
-- Process FIFA rankings and metadata
-
-### 4. Fixture Collection
-- Use the `football-data.org` API
-- Fetch FIFA World Cup 2026 fixtures
-- Separate group stage and knockout stage matches
-
-### 5. Data Preprocessing
-- Convert dates into datetime format
-- Remove missing values
-- Encode match outcomes
-- Generate total-goals feature
-
-### 6. Team Strength Modeling
-- Estimate attacking strength
-- Estimate defensive weakness
-- Build the final `team_strength.csv` dataset
-
-### 7. Match Prediction Model
-- Calculate expected goals using team strengths
-- Generate Poisson score probabilities
-- Apply Dixon-Coles low-score correction
-- Compute win/draw/loss probabilities
-
-### 8. Tournament Simulation
-- Simulate group stage fixtures
-- Generate tournament standings
-- Simulate knockout rounds
-- Produce final tournament predictions
+## 📊 Data Collection & Processing
+- Historical international football match collection
+- FIFA World Cup match extraction
+- Competitive match filtering
+- Elo rating integration
+- National team market value scraping
+- Fixture collection using APIs
 
 ---
 
-## ⚽ Poisson Goal Modeling
+## ⚽ Statistical Match Prediction
+- Poisson goal modeling
+- Expected goals estimation
+- Dixon-Coles low-score correction
+- Score probability matrices
+- Win / Draw / Loss probabilities
+
+---
+
+## 🎲 Tournament Simulation
+- Group stage simulation
+- Knockout bracket simulation
+- Monte Carlo sampling
+- Tournament progression modeling
+- Official FIFA World Cup bracket mappings
+
+---
+
+## ⚡ Optimization Techniques
+- NumPy vectorization
+- Precomputed matchup probabilities
+- Efficient probability matrix generation
+- Faster tournament simulation runtime
+
+---
+
+# 🧠 Core Modeling Approach
+
+## ⚽ Expected Goals Estimation
+
+The model estimates expected goals using offensive and defensive team strengths.
+
+<div align="center">
+
+### Home Team Expected Goals
+
+```math
+\lambda_{home} = Attack_{home} \times Defense_{away}
+```
+
+### Away Team Expected Goals
+
+```math
+\lambda_{away} = Attack_{away} \times Defense_{home}
+```
+
+</div>
+
+---
+
+## 🎯 Poisson Goal Modeling
 
 Football scores are modeled using Poisson probability distributions.
 
-Expected goals are estimated using:
+The system generates probabilities for scorelines ranging from:
 
-<div align="center"><code>
-λ_home = Attack_home × Defense_away
-</code></div>
+```text
+0-0 → 10-10
+```
 
-<div align="center"><code>
-λ_away = Attack_away × Defense_home
-</code></div>
+These probabilities are then aggregated into:
 
-These expected goals are then used to generate probabilities for scorelines from 0–10 goals.
+- ✅ Home Win Probability
+- 🤝 Draw Probability
+- ✅ Away Win Probability
 
 ---
 
@@ -103,31 +125,39 @@ Traditional Poisson models underestimate low-scoring football outcomes such as:
 - 0-1
 - 1-1
 
-The project implements the **Dixon-Coles correction**, which adjusts low-score probabilities to better reflect realistic football outcomes.
-
-The correction parameter used is:
+This project implements the **Dixon-Coles correction** to improve realism for tactical and defensive matches.
 
 ```python
 rho = -0.1
 ```
 
-This improves calibration for defensive and tactical matches.
+The correction is applied directly to low-score probability cells in the score matrix.
 
 ---
 
-## 🎲 Monte Carlo Tournament Simulation
+# 🎲 Monte Carlo Tournament Simulation
 
-The tournament simulation uses probabilistic sampling instead of deterministic winner selection.
+The project simulates the entire FIFA World Cup 2026 tournament using probabilistic sampling.
 
-### Group Stage Workflow
+---
 
-1. Simulate fixtures
-2. Allocate points
-3. Update standings
-4. Rank teams
-5. Determine qualification
+## 🏟 Group Stage Workflow
 
-### Knockout Stage Workflow
+```text
+Simulate Fixtures
+        ↓
+Allocate Points
+        ↓
+Update Standings
+        ↓
+Rank Teams
+        ↓
+Determine Qualification
+```
+
+---
+
+## 🏆 Knockout Stage Workflow
 
 The project simulates:
 
@@ -141,39 +171,115 @@ using official FIFA World Cup bracket mappings.
 
 ---
 
-## 📊 Visualizations & Outputs
+# 📂 Dataset Information
 
-The project generates:
+## 📈 Historical Match Dataset
+
+Contains:
+
+- Match dates
+- Home & away teams
+- Match scores
+- Tournament names
+- Match locations
+
+### Dataset Statistics
+
+| Dataset | Count |
+|---|---|
+| Historical Matches | 49,287 |
+| FIFA World Cup Matches | 1,036 |
+| Competitive Matches | 31,035 |
+| Processed WC Matches | 964 |
+| Teams in Strength Dataset | 309 |
+
+---
+
+## 🏆 Elo Ratings Dataset
+
+Collected from:
+
+```text
+https://www.eloratings.net/
+```
+
+Contains:
+
+- Team names
+- Elo ratings
+- Country metadata
+
+---
+
+## 🌐 FIFA World Cup 2026 Fixtures
+
+Collected using:
+
+```text
+https://www.football-data.org/
+```
+
+Contains:
+
+- Group stage fixtures
+- Knockout stage fixtures
+- Match dates
+- Tournament stages
+
+---
+
+# 📊 Visual Outputs
+
+The project can generate:
 
 - 📈 Match outcome probabilities
 - ⚽ Score probability matrices
-- 🏆 Tournament progression simulations
 - 📋 Group standings
+- 🏆 Tournament progression simulations
 - 🎯 Predicted winners and qualifiers
 
-The simulation framework can also be extended to estimate:
+---
 
-- Tournament win probabilities
-- Semi-final probabilities
-- Qualification probabilities
+# ⚡ Computational Optimizations
+
+## ✅ Vectorized Probability Computation
+
+The project uses:
+
+```python
+np.outer()
+```
+
+instead of nested loops for faster probability matrix generation.
 
 ---
 
-## ⚡ Computational Optimizations
+## ✅ Precomputed Matchups
 
-The project includes several optimizations for faster simulation:
+Previously computed team matchup probabilities are cached to avoid redundant calculations during simulation.
 
-### ✅ Vectorized Probability Computation
-Uses NumPy vectorization and `np.outer()` instead of nested loops.
-
-### ✅ Precomputed Matchups
-Stores previously computed team match probabilities to reduce redundant calculations.
-
-These optimizations significantly improve tournament simulation speed.
+This significantly improves tournament simulation speed.
 
 ---
 
-## 📁 Project Structure
+# 🛠 Tech Stack
+
+<div align="center">
+
+| Category | Tools |
+|---|---|
+| Programming Language | Python |
+| Data Analysis | Pandas, NumPy |
+| Statistical Modeling | SciPy |
+| APIs | football-data.org |
+| Data Sources | EloRatings.net, Transfermarkt |
+| Environment | Jupyter Notebook |
+
+</div>
+
+---
+
+# 📁 Project Structure
 
 ```bash
 World-Cup-Predictor/
@@ -207,65 +313,39 @@ World-Cup-Predictor/
 
 ---
 
-## 📦 Dependencies
+# 📦 Installation
 
-Install the required libraries using:
+Clone the repository:
+
+```bash
+git clone https://github.com/nximish/World-Cup-Predictor.git
+cd World-Cup-Predictor
+```
+
+Install dependencies:
 
 ```bash
 pip install pandas numpy scipy requests
 ```
 
----
-
-## 🛠 Technologies Used
-
-### Programming Language
-- Python
-
-### Libraries
-- Pandas
-- NumPy
-- SciPy
-- Requests
-- Pathlib
-
-### APIs & Sources
-- football-data.org API
-- EloRatings.net
-- Transfermarkt
+Run the notebooks using Jupyter Notebook or VS Code.
 
 ---
 
-## 🚀 Future Improvements
+# 🚀 Future Improvements
 
 Potential future enhancements include:
 
 - 📈 Dynamic Elo updates
 - ⚽ Expected Goals (xG) integration
-- 🤖 Machine learning models
+- 🤖 Machine Learning models
 - 👤 Player-level statistics
 - 🚑 Injury and suspension tracking
 - 🌐 Large-scale tournament simulations
 
 ---
 
-## 📝 Conclusion
-
-This project demonstrates a complete football analytics and tournament prediction system using statistical modeling and simulation techniques.
-
-By combining:
-
-- Historical football data
-- Team strength estimation
-- Elo ratings
-- Dixon-Coles corrected Poisson models
-- Monte Carlo tournament simulation
-
-the framework provides a realistic and extensible system for predicting FIFA World Cup outcomes under uncertainty.
-
----
-
-## 📚 References
+# 📚 References
 
 1. Dixon, M. J., & Coles, S. G. (1997). *Modelling Association Football Scores*
 2. https://www.eloratings.net/
@@ -274,4 +354,12 @@ the framework provides a realistic and extensible system for predicting FIFA Wor
 5. https://numpy.org/
 6. https://pandas.pydata.org/
 7. https://scipy.org/
+
+---
+
+<div align="center">
+
+### ⭐ If you found this project interesting, consider starring the repository!
+
+</div>
 ````
