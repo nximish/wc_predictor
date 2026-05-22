@@ -3,7 +3,9 @@
     "allow": [
       "Bash(python *)",
       "Bash(conda run -n wcpredictor python -c ' *)",
-      "WebFetch(domain:www.eloratings.net)"
+      "WebFetch(domain:www.eloratings.net)",
+      "Bash(wcpredictor/Scripts/python.exe -c ' *)",
+      "WebFetch(domain:fbref.com)"
     ]
   }
 }
