@@ -1,251 +1,125 @@
 ````markdown
-# FIFA World Cup 2026 Prediction System
+# 🌍 FIFA World Cup 2026 Prediction System
 
-A complete end-to-end football analytics and tournament prediction pipeline built using historical international football data, Elo ratings, Poisson goal modeling, Dixon-Coles correction, and Monte Carlo simulation.
+This project presents a complete end-to-end football analytics and tournament prediction pipeline using **historical international football data**, **Elo ratings**, **Poisson goal modeling**, **Dixon-Coles correction**, and **Monte Carlo simulation** to predict FIFA World Cup 2026 outcomes.
 
----
-
-# Overview
-
-This project predicts FIFA World Cup 2026 match outcomes and simulates the entire tournament structure using probabilistic statistical methods.
-
-The system combines:
-
-- Historical international football results
-- Team strength estimation
-- Elo ratings
-- Poisson probability distributions
-- Dixon-Coles low-score correction
-- Monte Carlo tournament simulation
-
-The objective is to realistically model football match uncertainty and generate tournament progression predictions.
+The system combines statistical modeling and probabilistic simulation to realistically estimate football match results and tournament progression under uncertainty.
 
 ---
 
-# Features
+## 🧠 Project Overview
 
-- Historical football data preprocessing
-- Team offensive and defensive strength modeling
-- Elo rating integration
-- Probabilistic match prediction
-- Dixon-Coles corrected Poisson model
-- FIFA World Cup 2026 fixture simulation
-- Monte Carlo tournament simulation
-- Group stage and knockout stage modeling
-- Efficient vectorized computations using NumPy
+Football is inherently probabilistic and low-scoring, making deterministic prediction methods unreliable. This project models football outcomes using classical statistical techniques commonly used in sports analytics.
 
----
+The prediction framework combines:
 
-# Dataset Description
+- ⚽ Historical international football results
+- 📊 Team offensive and defensive strength estimation
+- 🏆 Elo ratings
+- 🎯 Poisson goal distributions
+- 🔧 Dixon-Coles low-score correction
+- 🎲 Monte Carlo tournament simulation
 
-The project uses multiple football datasets.
-
-## Historical Match Dataset
-
-Contains international football match results including:
-
-- Match date
-- Home team
-- Away team
-- Home score
-- Away score
-- Tournament type
-
-### Dataset Statistics
-
-- Total historical matches: 49,287
-- FIFA World Cup matches: 1,036
-- Competitive matches: 31,035
-- Processed World Cup matches: 964
-- Teams in strength dataset: 309
+The core idea is to estimate expected goals for each team and simulate entire tournament structures thousands of times to generate realistic predictions.
 
 ---
 
-## Elo Ratings Dataset
+## 💻 What's Implemented
 
-Collected from Elo football rating databases.
+The project is divided into multiple modular notebooks covering the full analytics pipeline.
 
-Contains:
+### ✅ Step-by-Step Workflow
 
-- Team names
-- Elo ratings
-- Country information
+### 1. Historical Data Collection
+- Load international football match results
+- Extract FIFA World Cup matches
+- Filter competitive non-friendly fixtures
+- Export processed datasets
 
-Used to estimate relative national team strength.
-
----
-
-## National Teams Dataset
-
-Collected using Transfermarkt.
-
-Contains:
-
-- FIFA rankings
-- Squad market values
-- National team information
-
----
-
-## FIFA World Cup 2026 Fixtures
-
-Collected using the football-data.org API.
-
-Contains:
-
-- Group stage fixtures
-- Knockout stage fixtures
-- Match dates
-- Tournament stages
-
----
-
-# Project Pipeline
-
-## 1. Data Collection
-
-Implemented in:
-
-- `data_collection.ipynb`
-- `elo_ratings.ipynb`
-- `national_teams_data.ipynb`
-- `fetch_fixtures.ipynb`
-
-### Tasks
-
-- Load historical results
+### 2. Elo Rating Integration
 - Fetch Elo ratings
-- Scrape national team data
-- Fetch FIFA World Cup fixtures
-- Export processed CSV datasets
+- Clean and standardize team names
+- Merge rating information with team datasets
+
+### 3. National Team Data Collection
+- Scrape Transfermarkt national team information
+- Extract squad market values
+- Process FIFA rankings and metadata
+
+### 4. Fixture Collection
+- Use the `football-data.org` API
+- Fetch FIFA World Cup 2026 fixtures
+- Separate group stage and knockout stage matches
+
+### 5. Data Preprocessing
+- Convert dates into datetime format
+- Remove missing values
+- Encode match outcomes
+- Generate total-goals feature
+
+### 6. Team Strength Modeling
+- Estimate attacking strength
+- Estimate defensive weakness
+- Build the final `team_strength.csv` dataset
+
+### 7. Match Prediction Model
+- Calculate expected goals using team strengths
+- Generate Poisson score probabilities
+- Apply Dixon-Coles low-score correction
+- Compute win/draw/loss probabilities
+
+### 8. Tournament Simulation
+- Simulate group stage fixtures
+- Generate tournament standings
+- Simulate knockout rounds
+- Produce final tournament predictions
 
 ---
 
-## 2. Data Preprocessing
+## ⚽ Poisson Goal Modeling
 
-Implemented in:
+Football scores are modeled using Poisson probability distributions.
 
-- `data_processing.ipynb`
+Expected goals are estimated using:
 
-### Preprocessing Steps
+<div align="center"><code>
+λ_home = Attack_home × Defense_away
+</code></div>
 
-- Date conversion
-- Missing value removal
-- Match result encoding
-- Total goals feature generation
-- Clean dataset export
+<div align="center"><code>
+λ_away = Attack_away × Defense_home
+</code></div>
 
-Generated files:
-
-- `clean_wc_matches.csv`
-- `clean_competitive_matches.csv`
+These expected goals are then used to generate probabilities for scorelines from 0–10 goals.
 
 ---
 
-## 3. Team Strength Modeling
+## 🔧 Dixon-Coles Correction
 
-The project estimates:
-
-- Offensive strength (`goals_for`)
-- Defensive strength (`goals_against`)
-
-using historical competitive matches.
-
-Generated dataset:
-
-- `team_strength.csv`
-
----
-
-# Match Prediction Model
-
-Implemented in:
-
-- `model.ipynb`
-- `model.py`
-
-The model combines:
-
-- Poisson goal distributions
-- Dixon-Coles correction
-- Probabilistic outcome estimation
-
----
-
-# Poisson Goal Modeling
-
-Football scores are modeled using Poisson distributions.
-
-Expected goals are calculated as:
-
-- Home expected goals = Home attack strength × Away defensive weakness
-- Away expected goals = Away attack strength × Home defensive weakness
-
-The model generates probabilities for scorelines from 0–10 goals.
-
----
-
-# Dixon-Coles Correction
-
-Standard Poisson models underestimate low-scoring football outcomes such as:
+Traditional Poisson models underestimate low-scoring football outcomes such as:
 
 - 0-0
 - 1-0
 - 0-1
 - 1-1
 
-The Dixon-Coles correction adjusts probabilities for these outcomes using a correction parameter:
+The project implements the **Dixon-Coles correction**, which adjusts low-score probabilities to better reflect realistic football outcomes.
+
+The correction parameter used is:
 
 ```python
 rho = -0.1
 ```
 
-This improves realism in football score prediction.
+This improves calibration for defensive and tactical matches.
 
 ---
 
-# Probability Matrix Construction
+## 🎲 Monte Carlo Tournament Simulation
 
-The model creates a full score probability matrix using:
+The tournament simulation uses probabilistic sampling instead of deterministic winner selection.
 
-```python
-matrix = np.outer(m1, m2)
-```
-
-The matrix represents probabilities for all possible score combinations.
-
-Outcome probabilities are calculated using:
-
-- Lower triangle → Home wins
-- Upper triangle → Away wins
-- Diagonal → Draws
-
-Final outputs:
-
-- Home win probability
-- Away win probability
-- Draw probability
-
----
-
-# Monte Carlo Tournament Simulation
-
-Implemented in:
-
-- `simulation.ipynb`
-
-The tournament simulation includes:
-
-- Group stage simulation
-- Knockout stage simulation
-- Randomized outcome sampling
-- Official FIFA bracket progression
-
----
-
-## Group Stage Simulation
-
-Workflow:
+### Group Stage Workflow
 
 1. Simulate fixtures
 2. Allocate points
@@ -253,11 +127,9 @@ Workflow:
 4. Rank teams
 5. Determine qualification
 
----
+### Knockout Stage Workflow
 
-## Knockout Stage Simulation
-
-Simulates:
+The project simulates:
 
 - Round of 32
 - Round of 16
@@ -265,45 +137,43 @@ Simulates:
 - Semi-finals
 - Final
 
-Using official FIFA World Cup bracket mappings.
+using official FIFA World Cup bracket mappings.
 
 ---
 
-# Computational Optimizations
+## 📊 Visualizations & Outputs
 
-## Vectorized Probability Computation
+The project generates:
 
-Uses NumPy vectorization and `np.outer()` instead of nested loops for efficient matrix generation.
+- 📈 Match outcome probabilities
+- ⚽ Score probability matrices
+- 🏆 Tournament progression simulations
+- 📋 Group standings
+- 🎯 Predicted winners and qualifiers
 
-## Precomputed Matchups
+The simulation framework can also be extended to estimate:
 
-All team matchups are precomputed to reduce repeated calculations during simulation.
-
----
-
-# Technologies Used
-
-## Programming Language
-
-- Python
-
-## Libraries
-
-- Pandas
-- NumPy
-- SciPy
-- Requests
-- Pathlib
-
-## APIs and Sources
-
-- football-data.org API
-- EloRatings.net
-- Transfermarkt
+- Tournament win probabilities
+- Semi-final probabilities
+- Qualification probabilities
 
 ---
 
-# Project Structure
+## ⚡ Computational Optimizations
+
+The project includes several optimizations for faster simulation:
+
+### ✅ Vectorized Probability Computation
+Uses NumPy vectorization and `np.outer()` instead of nested loops.
+
+### ✅ Precomputed Matchups
+Stores previously computed team match probabilities to reduce redundant calculations.
+
+These optimizations significantly improve tournament simulation speed.
+
+---
+
+## 📁 Project Structure
 
 ```bash
 World-Cup-Predictor/
@@ -337,41 +207,51 @@ World-Cup-Predictor/
 
 ---
 
-# Strengths of the Project
+## 📦 Dependencies
 
-- Realistic football modeling
-- Probabilistic tournament simulation
-- Modular architecture
-- Efficient computation using vectorization
-- Low-score correction using Dixon-Coles adjustment
+Install the required libraries using:
 
----
-
-# Limitations
-
-- Static team strength estimates
-- Limited contextual features
-- No player-level modeling
-- Simplified assumptions in Poisson modeling
+```bash
+pip install pandas numpy scipy requests
+```
 
 ---
 
-# Future Improvements
+## 🛠 Technologies Used
 
-Potential enhancements include:
+### Programming Language
+- Python
 
-- Dynamic Elo updates
-- Expected Goals (xG) integration
-- Machine learning models
-- Player-level statistics
-- Injury and suspension tracking
-- Large-scale tournament simulations
+### Libraries
+- Pandas
+- NumPy
+- SciPy
+- Requests
+- Pathlib
+
+### APIs & Sources
+- football-data.org API
+- EloRatings.net
+- Transfermarkt
 
 ---
 
-# Conclusion
+## 🚀 Future Improvements
 
-This project demonstrates a complete football analytics and tournament prediction pipeline using classical statistical modeling and simulation techniques.
+Potential future enhancements include:
+
+- 📈 Dynamic Elo updates
+- ⚽ Expected Goals (xG) integration
+- 🤖 Machine learning models
+- 👤 Player-level statistics
+- 🚑 Injury and suspension tracking
+- 🌐 Large-scale tournament simulations
+
+---
+
+## 📝 Conclusion
+
+This project demonstrates a complete football analytics and tournament prediction system using statistical modeling and simulation techniques.
 
 By combining:
 
@@ -379,19 +259,19 @@ By combining:
 - Team strength estimation
 - Elo ratings
 - Dixon-Coles corrected Poisson models
-- Monte Carlo simulation
+- Monte Carlo tournament simulation
 
-the system provides a realistic framework for FIFA World Cup prediction under uncertainty.
+the framework provides a realistic and extensible system for predicting FIFA World Cup outcomes under uncertainty.
 
 ---
 
-# References
+## 📚 References
 
 1. Dixon, M. J., & Coles, S. G. (1997). *Modelling Association Football Scores*
-2. EloRatings.net
-3. football-data.org API
-4. Transfermarkt
-5. SciPy Documentation
-6. NumPy Documentation
-7. Pandas Documentation
+2. https://www.eloratings.net/
+3. https://www.football-data.org/
+4. https://www.transfermarkt.com/
+5. https://numpy.org/
+6. https://pandas.pydata.org/
+7. https://scipy.org/
 ````
